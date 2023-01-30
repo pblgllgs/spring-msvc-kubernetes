@@ -1,0 +1,51 @@
+version: '3.1'
+
+services:
+
+  postgres:
+    container_name: postgres
+    image: postgres:15.1
+    restart: always
+    volumes:
+      - postgres_msvc_cursos:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: msvc_cursos
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 2s
+      timeout: 20s
+      retries: 10
+    networks:
+      - spring
+
+  msvc-cursos:
+    container_name: msvc-cursos
+    depends_on:
+      msvc-usuarios:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+    image: pblgllgs/msvc-cursos:0.0.6
+    restart: always
+    ports:
+      - "8002:8002"
+    environment:
+      PORT: 8002
+      DB_HOST: postgres:5432
+      DB_DATABASE: msvc_cursos
+      DB_USERNAME: postgres
+      DB_PASSWORD: example
+      USUARIOS_URL: <INSTANCE_IP/DNS_NAME>:8001
+    networks:
+      - spring
+
+volumes:
+  postgres_msvc_cursos:
+    external: false
+
+networks:
+  spring:
