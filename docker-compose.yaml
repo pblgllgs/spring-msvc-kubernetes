@@ -1,0 +1,76 @@
+version: '3.1'
+
+services:
+
+  mysql:
+    container_name: mysql
+    image: mysql:8.0.32
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - mysql_msvc_usuarios:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: msvc-usuarios
+    healthcheck:
+        test: "/usr/bin/mysql --user=root --password=example --execute \"SHOW DATABASES;\""
+        interval: 2s
+        timeout: 20s
+        retries: 10
+    networks:
+      - spring
+
+  postgres:
+    container_name: postgres
+    image: postgres:15.1
+    restart: always
+    volumes:
+      - postgres_msvc_cursos:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: msvc_cursos
+    healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U postgres"]
+        interval: 2s
+        timeout: 20s
+        retries: 10
+    networks:
+      - spring
+
+  cursos:
+    container_name: msvc-cursos
+    depends_on:
+      postgres:
+        condition: service_healthy
+    image: pblgllgs/msvc-cursos:0.0.4
+    restart: always
+    ports:
+      - 8002:8002
+    networks:
+      - spring
+
+  usuarios:
+    depends_on:
+      mysql:
+        condition: service_healthy
+    container_name: msvc-usuarios
+    image: pblgllgs/msvc-usuarios:0.0.4
+    restart: always
+    ports:
+      - 8001:8001
+    networks:
+      - spring
+
+volumes:
+  mysql_msvc_usuarios:
+    external: false
+  postgres_msvc_cursos:
+    external: false
+
+networks:
+  spring:
