@@ -42,7 +42,7 @@ services:
     networks:
       - spring
 
-  cursos:
+  msvc-cursos:
     container_name: msvc-cursos
     depends_on:
       postgres:
@@ -51,10 +51,17 @@ services:
     restart: always
     ports:
       - 8002:8002
+    environment:
+      PORT: 8002
+      DB_HOST: postgres:5432
+      DB_DATABASE: msvc_cursos
+      DB_USERNAME: postgres
+      DB_PASSWORD: example
+      USUARIOS_URL: ${MSVC_USUARIOS_URL}
     networks:
       - spring
 
-  usuarios:
+  msvc-usuarios:
     container_name: msvc-usuarios
     depends_on:
       mysql:
@@ -63,6 +70,13 @@ services:
     restart: always
     ports:
       - 8001:8001
+    environment:
+      PORT: 8001
+      DB_HOST: mysql:3306
+      DB_DATABASE: msvc_usuarios
+      DB_USERNAME: root
+      DB_PASSWORD: example
+      CURSOS_URL: ${MSVC_CURSOS_URL}
     networks:
       - spring
 
