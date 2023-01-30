@@ -55,10 +55,10 @@ services:
       - spring
 
   usuarios:
+    container_name: msvc-usuarios
     depends_on:
       mysql:
         condition: service_healthy
-    container_name: msvc-usuarios
     image: pblgllgs/msvc-usuarios:${APP_VERSION}
     restart: always
     ports:
