@@ -35,5 +35,8 @@ spec:
 
       volumes:
         - name: data-mysql
-          persistentVolumeClaim:
-            claimName: mysql-pvc
+          hostPath:
+            path: /var/lib/mysql
+            type: DirectoryOrCreate
+
+

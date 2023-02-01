@@ -35,15 +35,23 @@ kubectl delete deployment mysql
 kubectl delete deployment msvc-usuarios
 kubectl delete deployment postgres
 kubectl delete deployment msvc-cursos
-
+kubectl delete pv postgres-pvc
+kubectl delete pv mysql-pvc
+kubectl delete pv postgres-pv
+kubectl delete pv mysql-pv
 O
 
 kubectl delete -f deployment-mysql.yaml
 kubectl delete -f deployment-msvc-usuarios.yaml
-kubectl delete -f service-mysql.yaml
-kubectl delete -f service-msvc-usuarios.yaml
 kubectl delete -f deployment-postgres.yaml
 kubectl delete -f deployment-msvc-cursos.yaml
+kubectl delete -f service-mysql.yaml
+kubectl delete -f service-msvc-usuarios.yaml
 kubectl delete -f service-postgres.yaml
 kubectl delete -f service-msvc-cursos.yaml
+kubectl delete -f postgres-pvc.yaml
+kubectl delete -f mysql-pvc.yaml
+kubectl delete -f postgres-pv.yaml
+kubectl delete -f mysql-pv.yaml
+
 ```
