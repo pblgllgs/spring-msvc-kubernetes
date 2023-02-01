@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: msvc-usuarios
+  name: msvc-cursos
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: msvc-usuarios
+      app: msvc-cursos
   template:
     metadata:
       labels:
-        app: msvc-usuarios
+        app: msvc-cursos
     spec:
       containers:
-      - name: msvc-usuarios
-        image: pblgllgs/msvc-usuarios:0.0.7
+      - name: msvc-cursos
+        image: pblgllgs/msvc-cursos:0.0.7
         ports:
-        - containerPort: 8001
+        - containerPort: 8002
         resources:
           requests:
             cpu: 100m
@@ -26,16 +26,14 @@ spec:
             memory: 500Mi
         env:
           - name: PORT
-            value: "8001"
+            value: "8002"
           - name: DB_HOST
-            value: "mysql:3306"
+            value: "postgres:5432"
           - name: DB_DATABASE
-            value: msvc_usuarios
+            value: msvc_cursos
           - name: DB_USERNAME
-            value: root
+            value: postgres
           - name: DB_PASSWORD
             value: example
-          - name: CURSOS_URL
-            value: "msvc-cursos:8002"
-
-
+          - name: USUARIOS_URL
+            value: "msvc-usuarios:8001"
