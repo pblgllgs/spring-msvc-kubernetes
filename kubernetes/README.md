@@ -1,6 +1,6 @@
 # Services
 
-## Expose service usuarios
+## Expose service usuarios in imperative mode
 
 ```$bash
 kubectl expose deployment msvc-usuarios --port=8001 --type=LoadBalancer
@@ -35,10 +35,11 @@ kubectl delete deployment mysql
 kubectl delete deployment msvc-usuarios
 kubectl delete deployment postgres
 kubectl delete deployment msvc-cursos
-kubectl delete pv postgres-pvc
-kubectl delete pv mysql-pvc
+kubectl delete pvc postgres-pvc
+kubectl delete pvc mysql-pvc
 kubectl delete pv postgres-pv
 kubectl delete pv mysql-pv
+
 O
 
 kubectl delete -f deployment-mysql.yaml
@@ -53,5 +54,4 @@ kubectl delete -f postgres-pvc.yaml
 kubectl delete -f mysql-pvc.yaml
 kubectl delete -f postgres-pv.yaml
 kubectl delete -f mysql-pv.yaml
-
 ```
