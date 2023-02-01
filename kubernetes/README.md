@@ -24,21 +24,53 @@ locahost:8001/crash
 kubectl scale deployment msvc-usuarios --replicas=3
 ```
 
+## UP
+
+```$bash
+kubectl apply -f secret.yaml
+kubectl apply -f configmap.yaml
+
+kubectl apply -f mysql-pv.yaml
+kubectl apply -f mysql-pvc.yaml
+
+kubectl apply -f deployment-mysql.yaml
+kubectl apply -f service-mysql.yaml
+
+kubectl apply -f deployment-msvc-usuarios.yaml
+kubectl apply -f service-msvc-usuarios.yaml
+
+kubectl apply -f postgres-pv.yaml
+kubectl apply -f postgres-pvc.yaml
+
+kubectl apply -f deployment-postgres.yaml
+kubectl apply -f service-postgres.yaml
+
+kubectl apply -f deployment-msvc-cursos.yaml
+kubectl apply -f service-msvc-cursos.yaml
+```
+
 ## delete
 
 ```$bash
-kubectl delete service mysql
-kubectl delete service msvc-usuarios
-kubectl delete service postgres
-kubectl delete service msvc-cursos
 kubectl delete deployment mysql
+kubectl delete service mysql
 kubectl delete deployment msvc-usuarios
-kubectl delete deployment postgres
-kubectl delete deployment msvc-cursos
-kubectl delete pvc postgres-pvc
+kubectl delete service msvc-usuarios
 kubectl delete pvc mysql-pvc
-kubectl delete pv postgres-pv
 kubectl delete pv mysql-pv
+
+kubectl delete deployment postgres
+kubectl delete service postgres
+kubectl delete deployment msvc-cursos
+kubectl delete service msvc-cursos
+kubectl delete pvc postgres-pvc
+kubectl delete pv postgres-pv
+
+kubectl delete secret msvc-usuarios
+kubectl delete secret msvc-cursos
+
+kubectl delete configmap msvc-usuarios
+kubectl delete configmap msvc-cursos
 
 O
 
@@ -54,4 +86,6 @@ kubectl delete -f postgres-pvc.yaml
 kubectl delete -f mysql-pvc.yaml
 kubectl delete -f postgres-pv.yaml
 kubectl delete -f mysql-pv.yaml
+kubectl delete -f secrets.yaml
+kubectl delete -f configmap.yaml
 ```

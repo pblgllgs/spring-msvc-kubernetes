@@ -26,16 +26,34 @@ spec:
             memory: 500Mi
         env:
           - name: PORT
-            value: "8001"
+            valueFrom:
+              configMapKeyRef:
+                name: msvc-usuarios
+                key: port
           - name: DB_HOST
-            value: "mysql:3306"
+            valueFrom:
+              configMapKeyRef:
+                name: msvc-usuarios
+                key: db_host
           - name: DB_DATABASE
-            value: msvc_usuarios
+            valueFrom:
+              configMapKeyRef:
+                name: msvc-usuarios
+                key: database
           - name: DB_USERNAME
-            value: root
+            valueFrom:
+              secretKeyRef:
+                name: msvc-usuarios
+                key: username
           - name: DB_PASSWORD
-            value: example
-          - name: CURSOS_URL
-            value: "msvc-cursos:8002"
+            valueFrom:
+              secretKeyRef:
+                name: msvc-usuarios
+                key: password
+          - name: USUARIOS_URL
+            valueFrom:
+              configMapKeyRef:
+                name: msvc-usuarios
+                key: cursos_url
 
 
