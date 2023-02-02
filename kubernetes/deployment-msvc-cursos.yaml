@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: msvc-cursos
-        image: pblgllgs/msvc-cursos:0.0.7
+        image: pblgllgs/msvc-cursos:0.1.0
         ports:
         - containerPort: 8002
         resources:

@@ -89,3 +89,10 @@ kubectl delete -f mysql-pv.yaml
 kubectl delete -f secrets.yaml
 kubectl delete -f configmap.yaml
 ```
+
+## Autorization
+
+```$bash
+kubectl create clusterrolebinding admin --clusterrole=cluster-admin --serviceaccoun
+t=default:default
+```
