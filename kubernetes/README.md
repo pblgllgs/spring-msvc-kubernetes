@@ -47,6 +47,8 @@ kubectl apply -f service-postgres.yaml
 
 kubectl apply -f deployment-msvc-cursos.yaml
 kubectl apply -f service-msvc-cursos.yaml
+
+kubectl apply -f deployment-msvc-gateway.yaml
 ```
 
 ## delete
@@ -65,6 +67,9 @@ kubectl delete deployment msvc-cursos
 kubectl delete service msvc-cursos
 kubectl delete pvc postgres-pvc
 kubectl delete pv postgres-pv
+
+kubectl delete deployment msvc-gateway
+kubectl delete service msvc-gateway
 
 kubectl delete secret msvc-usuarios
 kubectl delete secret msvc-cursos

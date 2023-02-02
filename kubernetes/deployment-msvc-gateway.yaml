@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: msvc-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: msvc-gateway
+  template:
+    metadata:
+      labels:
+        app: msvc-gateway
+    spec:
+      containers:
+      - name: msvc-gateway
+        image: pblgllgs/msvc-gateway:0.0.1
+        ports:
+        - containerPort: 8090
+        resources:
+          requests:
+            cpu: 200m
+            memory: 256Mi
+          limits:
+            cpu: 350m
+            memory: 500Mi
+            
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: msvc-gateway
+spec:
+  ports:
+  - port: 8090
+    protocol: TCP
+    targetPort: 8090
+  selector:
+    app: msvc-gateway
+  type: LoadBalancer
