@@ -14,15 +14,15 @@ spec:
     spec:
       containers:
       - name: msvc-usuarios
-        image: pblgllgs/msvc-usuarios:0.1.3
+        image: pblgllgs/msvc-usuarios:0.1.4-actuator
         ports:
         - containerPort: 8001
         resources:
           requests:
-            cpu: 100m
+            cpu: 200m
             memory: 256Mi
           limits:
-            cpu: 250m
+            cpu: 350m
             memory: 500Mi
         env:
           - name: PORT
@@ -63,5 +63,3 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.podIP
-
-

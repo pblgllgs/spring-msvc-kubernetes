@@ -19,10 +19,10 @@ spec:
         - containerPort: 8002
         resources:
           requests:
-            cpu: 100m
+            cpu: 200m
             memory: 256Mi
           limits:
-            cpu: 250m
+            cpu: 350m
             memory: 500Mi
         env:
           - name: PORT
