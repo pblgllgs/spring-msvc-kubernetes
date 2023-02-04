@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: msvc-usuarios
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: msvc-usuarios
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: msvc-usuarios
-        image: pblgllgs/msvc-usuarios:0.1.4-actuator
+        image: pblgllgs/msvc-usuarios:0.1.5-auth-c1
         ports:
         - containerPort: 8001
         resources:
@@ -63,3 +63,13 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.podIP
+          - name: LB_AUTH_ISSUER_URI
+            valueFrom:
+              configMapKeyRef:
+                name: msvc-usuarios
+                key: lb_auth_issuer_uri
+          - name: LB_USUARIOS_URI
+            valueFrom:
+              configMapKeyRef:
+                name: msvc-usuarios
+                key: lb_usuarios_uri

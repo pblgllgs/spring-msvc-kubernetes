@@ -30,6 +30,10 @@ kubectl scale deployment msvc-usuarios --replicas=3
 kubectl apply -f secret.yaml
 kubectl apply -f configmap.yaml
 
+kubectl apply -f deployment-msvc-auth.yaml
+
+kubectl apply -f deployment-msvc-gateway.yaml
+
 kubectl apply -f mysql-pv.yaml
 kubectl apply -f mysql-pvc.yaml
 
@@ -47,8 +51,6 @@ kubectl apply -f service-postgres.yaml
 
 kubectl apply -f deployment-msvc-cursos.yaml
 kubectl apply -f service-msvc-cursos.yaml
-
-kubectl apply -f deployment-msvc-gateway.yaml
 ```
 
 ## delete
@@ -71,31 +73,17 @@ kubectl delete pv postgres-pv
 kubectl delete deployment msvc-gateway
 kubectl delete service msvc-gateway
 
+kubectl delete deployment msvc-auth
+kubectl delete service msvc-auth
+
 kubectl delete secret msvc-usuarios
 kubectl delete secret msvc-cursos
 
 kubectl delete configmap msvc-usuarios
 kubectl delete configmap msvc-cursos
-
-O
-
-kubectl delete -f deployment-mysql.yaml
-kubectl delete -f deployment-msvc-usuarios.yaml
-kubectl delete -f deployment-postgres.yaml
-kubectl delete -f deployment-msvc-cursos.yaml
-kubectl delete -f service-mysql.yaml
-kubectl delete -f service-msvc-usuarios.yaml
-kubectl delete -f service-postgres.yaml
-kubectl delete -f service-msvc-cursos.yaml
-kubectl delete -f postgres-pvc.yaml
-kubectl delete -f mysql-pvc.yaml
-kubectl delete -f postgres-pv.yaml
-kubectl delete -f mysql-pv.yaml
-kubectl delete -f secrets.yaml
-kubectl delete -f configmap.yaml
 ```
 
-## Autorization
+## Authorization
 
 ```$bash
 kubectl create clusterrolebinding admin --clusterrole=cluster-admin --serviceaccoun
