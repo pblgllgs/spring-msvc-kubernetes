@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: msvc-usuarios
-        image: pblgllgs/msvc-usuarios:0.1.5-auth-c1
+        image: pblgllgs/msvc-usuarios:0.1.7-auth-sc1-2.6.4
         ports:
         - containerPort: 8001
         resources:

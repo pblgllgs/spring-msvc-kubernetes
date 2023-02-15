@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: msvc-auth
-        image: pblgllgs/msvc-auth:0.0.4-sas1.0.0-c1
+        image: pblgllgs/msvc-auth:0.0.5-sas0.3.1-sc1
         ports:
         - containerPort: 9000
         resources:
