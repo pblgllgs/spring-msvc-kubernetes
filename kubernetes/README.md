@@ -86,6 +86,5 @@ kubectl delete configmap msvc-cursos
 ## Authorization
 
 ```$bash
-kubectl create clusterrolebinding admin --clusterrole=cluster-admin --serviceaccoun
-t=default:default
+kubectl create clusterrolebinding admin --clusterrole=cluster-admin --serviceaccount=default:default
 ```
